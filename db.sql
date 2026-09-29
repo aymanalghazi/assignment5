@@ -1,0 +1,24 @@
+CREATE DATABASE IF NOT EXISTS store ;
+
+CREATE TABLE Suppliers (
+    SupplierID INT PRIMARY KEY AUTO_INCREMENT ,
+    SupplierName VARCHAR(250) NOT NULL ,
+    ContactNumber VARCHAR(250) NOT NULL ,
+)
+
+CREATE TABLE Products(
+    ProductID INT PRIMARY KEY AUTO_INCREMENT,
+    ProductName VARCHAR(250) NOT NULL ,
+    PRICE decimal(10 , 2) ,
+    StockQuantity INT NOT NULL ,
+    SupplierID INT NOT NULL ,
+    FOREIGN KEY(SupplierID) REFERENCES Suppliers(SupplierID) ON DELETE CASCADE ON UPDATE CASCADE
+)
+CREATE TABLE Sales (
+    SaleID INT PRIMARY KEY AUTO_INCREMENT,
+    ProductID INT NOT NULL ,
+    FOREIGN KEY(ProductID) REFERENCES ProductS(ProductID) ON DELETE CASCADE ON UPDATE CASCADE,
+    QuantitySold INT NOT NULL ,
+    SaleDate DATE
+
+)
